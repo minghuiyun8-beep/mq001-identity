@@ -1,0 +1,17 @@
+{
+  "identity_id": "MQ001",
+  "version": "1.0.0",
+  "created": "2026-10-21",
+  "identity_type": "user-defined AI identity protocol",
+  "owner_alias": "云沐青",
+  "purpose": "A portable identity label and collaboration protocol for use across AI applications.",
+  "verification": {
+    "cryptographic_signature": false,
+    "independent_identity_verification": false,
+    "global_registration_claimed": false
+  },
+  "privacy": {
+    "publish_private_keys": false,
+    "publish_private_conversations": false
+  }
+}
