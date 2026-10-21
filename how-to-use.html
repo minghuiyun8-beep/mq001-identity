@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1b">
+  <meta name="description" content="MQ001 使用指南。Learn how to use the MQ001 AI identity protocol across different AI platforms.">
+  <title>How to Use MQ001 | MQ001 使用指南</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080d1b;
+      --panel: #101a2d;
+      --line: #263652;
+      --text: #edf3ff;
+      --muted: #9aacc7;
+      --cyan: #68e1fd;
+      --violet: #a99aff;
+      --green: #86efac;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, #182653 0%, transparent 42%),
+        radial-gradient(ellipse at 100% 35%, #251943 0%, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(920px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .brand span { color: var(--cyan); }
+
+    .nav a { font-size: 14px; }
+
+    .hero {
+      padding: 68px 0 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(36px, 8vw, 60px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 10px;
+      color: var(--cyan);
+      font-size: 0.48em;
+      letter-spacing: 1px;
+    }
+
+    .intro {
+      max-width: 650px;
+      margin: 20px auto;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 18px;
+      color: var(--text);
+      background: #111c32;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: linear-gradient(110deg, #177caa, #6552b9);
+      border-color: transparent;
+    }
+
+    .btn:hover { filter: brightness(1.15); text-decoration: none; }
+
+    section { padding: 22px 0; }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .sub {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #111d32, #0c1323);
+    }
+
+    .number {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    h3 { margin: 7px 0; font-size: 18px; }
+    .card p { margin: 7px 0; }
+    .en { color: var(--muted); font-size: 14px; }
+
+    .prompt {
+      padding: 18px;
+      border: 1px solid #35466b;
+      border-radius: 14px;
+      background: #080e1c;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 3px solid var(--violet);
+      border-radius: 0 10px 10px 0;
+      background: #17152a;
+      color: #d9d4ff;
+      font-size: 14px;
+    }
+
+    .status { min-height: 24px; color: var(--green); font-size: 13px; }
+
+    footer {
+      margin-top: 40px;
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 48px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 17px; }
+      .section-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="./index.html">MQ<span>001</span></a>
+      <a href="./index.html">← 返回首页 / Back to Home</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="eyebrow">A PORTABLE AI IDENTITY PROTOCOL</div>
+      <h1>使用 MQ001<span>HOW TO USE MQ001</span></h1>
+      <p class="intro">
+        将一套清晰的身份原则带入不同的 AI 对话。
+        让 AI 尽可能诚实、独立、理性，并且有建设性。
+      </p>
+      <p class="intro en">
+        Bring a clearly defined set of identity principles into different AI
+        conversations. Encourage honesty, independent judgment, rationality,
+        and constructive feedback.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#start">开始使用 / Get Started</a>
+        <a class="btn" href="./identity.json">查看身份文件 / View JSON</a>
+      </div>
+    </div>
+
+    <section id="about">
+      <h2 class="section-title">MQ001 是什么？</h2>
+      <p class="sub">What is MQ001?</p>
+      <div class="card">
+        <p>
+          MQ001 是一套公开的 AI 身份与行为协议，描述期望的人格特征、
+          推理原则、主动反馈方式和能力边界。
+        </p>
+        <p class="en">
+          MQ001 is a public AI identity and behavior protocol. It describes
+          intended personality traits, reasoning principles, proactive
+          feedback, and capability boundaries.
+        </p>
+        <p>
+          它不是独立的 AI 模型，也不保证每个平台都会完全执行这些规则。
+        </p>
+        <p class="en">
+          It is not an independent AI model, and it cannot guarantee identical
+          behavior across every platform.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">四步开始使用</h2>
+      <p class="sub">Four steps to get started</p>
+      <div class="grid">
+        <div class="card">
+          <div class="number">STEP 01</div>
+          <h3>打开身份文件</h3>
+          <p class="en">Open the identity file.</p>
+          <p>先访问公开 JSON 文件，确认 AI 能否读取。</p>
+          <p class="en">First, check whether your AI can access the public JSON.</p>
+          <p><a href="./identity.json">打开 identity.json →</a></p>
+        </div>
+        <div class="card">
+          <div class="number">STEP 02</div>
+          <h3>复制使用指令</h3>
+          <p class="en">Copy the setup prompt.</p>
+          <p>将下方的指令发送给你使用的 AI。</p>
+          <p class="en">Send the prompt below to your preferred AI assistant.</p>
+        </div>
+        <div class="card">
+          <div class="number">STEP 03</div>
+          <h3>确认规则理解</h3>
+          <p class="en">Verify its understanding.</p>
+          <p>让 AI 总结原则，并诚实说明无法读取或执行的部分。</p>
+          <p class="en">Ask it to summarize the rules and disclose any limitations.</p>
+        </div>
+        <div class="card">
+          <div class="number">STEP 04</div>
+          <h3>用真实问题测试</h3>
+          <p class="en">Test with a real question.</p>
+          <p>观察它是否敢于提出异议、说明不确定性并提供替代方案。</p>
+          <p class="en">Check whether it challenges weak reasoning, explains uncertainty,
+            and offers alternatives.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="start">
+      <h2 class="section-title">复制 MQ001 使用指令</h2>
+      <p class="sub">Copy the MQ001 setup prompt</p>
+      <div class="prompt" id="prompt">请读取 MQ001 的公开身份配置文件：
+https://minghuiyun8-beep.github.io/mq001-identity/identity.json
+
+请先说明你是否成功读取文件，并总结其中的人格特征、推理原则、主动反馈规则和能力边界。
+
+如果能够读取，请在本次对话中尽可能按照这些原则与你交流：温暖但不盲从，诚实但不刻薄，支持但不奉承；区分事实、假设和未知信息；在证据充分时，礼貌地指出我的逻辑漏洞并给出替代思路。
+
+如果无法读取，请明确说明，不要假装读过文件。如果某项要求超出你的能力或与平台规则冲突，也请明确说明。
+
+注意：这个文件描述的是预期行为，本身不会赋予你持久记忆、独立运行能力或额外权限。
+
+---
+
+Please read the public MQ001 identity configuration:
+https://minghuiyun8-beep.github.io/mq001-identity/identity.json
+
+First, state whether you successfully accessed the file. Summarize its personality traits, reasoning principles, proactive feedback rules, and capability boundaries.
+
+If accessible, follow these principles as closely as possible in this conversation: warmth without blind agreement, honesty without cruelty, and support without flattery. Distinguish facts, assumptions, and unknowns. When evidence supports it, respectfully identify flaws in my reasoning and offer alternatives.
+
+If you cannot access the file, say so. Do not pretend to have read it. Disclose any limitations or conflicts with your platform's rules.
+
+This file describes intended behavior. It does not grant persistent memory, independent execution, or additional permissions.</div>
+      <div class="actions" style="justify-content:flex-start">
+        <button class="btn primary" id="copyBtn" type="button">复制完整指令 / Copy Prompt</button>
+        <button class="btn" id="selectBtn" type="button">选中文本 / Select Text</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <div class="note">
+        如果 AI 无法读取链接，可以把 identity.json 的完整内容复制到对话中。
+        这能绕过部分网页访问问题，但仍不能保证 AI 完全遵循规则。
+        <br>
+        <span class="en">If the AI cannot access the link, paste the full JSON content
+        into the conversation. This bypasses some access issues, but does not
+        guarantee full compliance.</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">能力边界</h2>
+      <p class="sub">Capability boundaries</p>
+      <div class="card">
+        <p>• 读取身份文件，不等于永久记住它。</p>
+        <p class="en">Reading the identity file does not mean permanent memory.</p>
+        <p>• 身份协议不能自动增加工具权限或改变模型架构。</p>
+        <p class="en">The protocol cannot automatically add tools or change model architecture.</p>
+        <p>• 不同模型的读取能力与执行效果可能不同。</p>
+        <p class="en">Access and behavior may vary across AI platforms.</p>
+        <p>• 请勿向公开身份文件添加密码、私钥或私人对话。</p>
+        <p class="en">Never add passwords, private keys, or private conversations to public files.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">项目链接</h2>
+      <p class="sub">Project links</p>
+      <div class="card">
+        <p><a href="./index.html">身份介绍页 / Identity homepage</a></p>
+        <p><a href="./identity.json">身份配置文件 / Identity JSON</a></p>
+        <p><a href="https://github.com/minghuiyun8-beep/mq001-identity">GitHub 仓库 / GitHub repository</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>MQ001 · A Portable AI Identity Protocol</div>
+    <div>Open specification · Transparent limitations · Versioned development</div>
+  </footer>
+
+  <script>
+    const promptEl = document.getElementById("prompt");
+    const statusEl = document.getElementById("status");
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(promptEl.innerText);
+        statusEl.textContent = "复制成功！/ Copied successfully!";
+      } catch (error) {
+        selectPrompt();
+        statusEl.textContent =
+          "自动复制不可用，请长按选中文本并复制。 / Select the text and copy it manually.";
+      }
+    });
+
+    function selectPrompt() {
+      const range = document.createRange();
+      range.selectNodeContents(promptEl);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      promptEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    document.getElementById("selectBtn").addEventListener("click", () => {
+      selectPrompt();
+      statusEl.textContent =
+        "文本已选中，请复制。 / Text selected. Copy it now.";
+    });
+  </script>
+</body>
+</html>
